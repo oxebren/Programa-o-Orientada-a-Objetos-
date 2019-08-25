@@ -1,0 +1,265 @@
+package model;
+
+public class Carro {
+	
+	private String fabricante;
+	private String modelo;
+	private int ano;
+	private boolean motorLigado;
+	private int velocidade;
+	
+	public void detalhes() { 
+    System.out.println ("------ CARRO -----");
+	System.out.println ("Fabricante :" + this.fabricante);
+	System.out.println ("Fabricante :" + this.modelo);
+	System.out.println ("Ano:" + this.ano + "\n");
+	}
+	
+	public String situacaoMotor() {
+		if (this.motorLigado) {
+			return this.modelo + "---> Motor Ligado!";
+		}else {
+			return this.modelo + "---> Motor Desligado!";
+				
+		}
+		
+	}
+	
+	public String ligarMotor() {
+		if (this.motorLigado) {
+			return "O motor da(o)" + this.modelo + "já estava ligado.";
+		}else {
+			this.motorLigado = true; // Estou ligando motor 
+			return "O motor da(o)" + this.modelo + "foi ligado agora.";
+			
+			
+		}
+		
+		
+	}
+	
+	public String desligarMotor() {
+     //Se o motor estiver desligado (false)
+		if (!this.motorLigado) {
+			return "O motor da(o)" + this.modelo + "já estava desligado.";
+		}
+		
+		//verificando se a velocidade do carro é zero 
+		if (this.velocidade == 0) {
+			//desligar motor 
+			this.motorLigado = false;
+			
+			return "O motor da(o)" + this.modelo + " foi desligado desligado agora.";
+		}
+	// Executa aqui quando o carro está ligado e com velocidade diferente de zero 
+	return "ATENÇÃO: o motor da (o)" + this.modelo + "não pode ser desligado, pois o carro está em movimento.";
+}
+	
+	public String acelerar(int valor) {
+		if (this.motorLigado) {
+			this.velocidade += valor; // this.velocidade =  this.velocidade + valor;
+			return this.modelo + "---> ATENÇÃO! Acelerou! Velociodade atual:" +this.velocidade + "Km/h";
+		}
+		
+		return this.modelo + "---> ATENÇÃO! Não é possível acelerar com o motor desligado.";
+	}
+	
+	public String frear (int valor) {
+		// Se o motor estiver desligado (false)
+		if (!this.motorLigado) {
+			return this.modelo + "ATENÇÃO: O motor está desligado! O carro está parado!";	
+		}
+	
+		//daqui em diante já é garantido que o motor do carro está ligado 
+		
+		// verificando se a velocidade é zero 
+		
+		if (this.velocidade == 0) {
+			return this.modelo + " ATENÇÃO: O carro já está parado! ";
+		}
+		
+		//verificando se a redução de velocidade daria valor negativo 
+		
+		if ((this.velocidade - valor) < 0) {
+			// Atribuir zero à velocidade do carro
+			this.velocidade = 0;
+			
+			return this.modelo + "--> FREOU! O carro está parado!";
+		}
+		
+		//além das obsrvações anterioeres, daqui em diante é garantido que a 
+		//frenagem aplicada ainda deixa a velocidade positiva
+		
+		// aplicando o decréscimo de velocidade:
+		
+	    this.velocidade -= valor;  //é o mesmo que this.velocidade = this.valocidade - valor
+	    
+	    return this.modelo + "--> FREOU! Velocidade Atual: " + this.velocidade + "Km/h";
+	    
+	}
+	
+	// devolve a marcha para o carro
+	
+	//devolve a marcha do carro
+	   public String pegaMarcha() {
+		 if ( !this.motorLigado) {
+			  return this.modelo + "O carro está desligado!";
+			     }
+		 if ( this.motorLigado && this.velocidade == 0 ) {
+			 return this.velocidade+ "O carro está em -1!";	 
+		          }
+			     if (this.velocidade>0 && this.velocidade < 40) {
+			       return this.modelo + "O caro está na macha 1 ";
+			     }
+			     if (this.velocidade >= 40 && this.velocidade < 80) {
+			    	 return this.modelo + "O caro está na macha 2";
+			     }
+			     return this.modelo + "O caro está na macha 3 ";
+	   }
+
+	// método costrutor simples
+	
+	public Carro() {
+	}
+
+	// método construtor completo
+	public Carro(String fabricante, String modelo, int ano, boolean motorLigado, int velocidade) {
+		super();
+		this.fabricante = fabricante;
+		this.modelo = modelo;
+		this.ano = ano;
+		this.motorLigado = motorLigado;
+		this.velocidade = velocidade;
+	}
+
+	// tereceiro método construtor
+	public Carro(String fabricante, String modelo, int ano) {
+		super();
+		this.fabricante = fabricante;
+		this.modelo = modelo;
+		this.ano = ano;
+		this.motorLigado = false;
+		this.velocidade = 0;
+	}
+
+	
+	public String getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(String fabricante) {
+		this.fabricante = fabricante;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public int getAno() {
+		return ano;
+	}
+
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+
+	public boolean isMotorLigado() {
+		return motorLigado;
+	}
+
+	public void setMotorLigado(boolean motorLigado) {
+		this.motorLigado = motorLigado;
+	}
+
+	public int getVelocidade() {
+		return velocidade;
+	}
+
+	public void setVelocidade(int velocidade) {
+		this.velocidade = velocidade;
+	}
+
+}
+
+ackage controller;
+
+import model.Carro;
+
+public class GerenciamentoCarros {
+	
+	public static void main (String [] args ) {
+		
+		Carro c1 = new Carro();
+		c1.setFabricante("VM");
+		c1.setModelo("Fusca");
+		c1.setAno(1977);
+		c1.setMotorLigado(false);
+		c1.setVelocidade(0);
+		
+		Carro c2 = new Carro ("VM", "Kombi", 1980, false, 0);
+		
+		Carro c3 = new Carro ("Chevrolet", "Opala", 1982);
+		
+		
+		c1.detalhes(); 
+		c2.detalhes();
+		c3.detalhes();
+
+		System.out.println (c1.situacaoMotor ());
+		System.out.println (c2.situacaoMotor ());
+		System.out.println (c3.situacaoMotor ());
+		
+		System.out.println (c1.ligarMotor ());
+		System.out.println (c2.ligarMotor ());
+		System.out.println (c3.ligarMotor ());
+		
+		System.out.println (c1.desligarMotor ());
+		System.out.println (c2.desligarMotor ());
+		System.out.println (c3.desligarMotor ());
+		
+		System.out.println (c1.desligarMotor ());
+		System.out.println (c2.desligarMotor ());
+		System.out.println (c3.desligarMotor ());
+		
+		System.out.println (c1.desligarMotor ());
+		System.out.println (c2.desligarMotor ());
+		System.out.println (c3.desligarMotor ());
+		
+		System.out.println (c1.situacaoMotor ());
+		System.out.println (c2.situacaoMotor ());
+		System.out.println (c3.situacaoMotor ());
+		
+		System.out.println (c1.ligarMotor());
+		System.out.println (c1.acelerar(30));
+		System.out.println (c1.frear(10));
+		System.out.println (c1.pegaMarcha());
+		
+		System.out.println (c2.desligarMotor());
+		System.out.println (c2.ligarMotor());
+		System.out.println (c2.pegaMarcha());
+		
+		System.out.println (c3.ligarMotor());
+		System.out.println (c3.acelerar(50));
+		System.out.println (c3.acelerar(12));
+		System.out.println (c3.frear(10));
+		System.out.println (c3.pegaMarcha());
+		
+		
+		System.out.println (c3.desligarMotor());
+		System.out.println (c3.frear (52));
+		System.out.println (c3.desligarMotor ());
+		System.out.println (c3.desligarMotor ());	
+	}
+}
+
+		
+		
+		
+		
+		
+		
+	
