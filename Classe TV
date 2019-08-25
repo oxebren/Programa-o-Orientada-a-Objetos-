@@ -1,0 +1,161 @@
+package model;
+
+public class TV {
+	
+	private String marca;
+	private boolean tvLigada;
+	private int tamanho;
+	private int volume;
+	private int voltagem;
+	private int canal = 0;
+	private boolean tvDesligada;
+	private int consumo;
+	
+	//método construtor simples 
+	public TV() {
+		super();
+	}
+
+	// método construtor completo 
+	public TV(String marca, boolean tvLigada, int tamanho, int volume, int voltagem, int canal) {
+		super();
+		this.marca = marca;
+		this.tvLigada = tvLigada;
+		this.tamanho = tamanho;
+		this.volume = volume;
+		this.voltagem = voltagem;
+		this.canal = canal;
+	}
+	// primeiro método público 
+	public void detalhes () {
+		System.out.println ("----TV-----");
+		System.out.println ("Marca:" +this.marca);
+		System.out.println ("Tamanho:" +this.tamanho);
+	}
+	// segundo método público
+	
+	public String situacaoTelevisor() {
+		if (this.tvLigada) { 
+			return this.marca + "---> TV Ligada!";
+		}else {
+			return this.marca + "---> TV Desligada!";
+				
+		}
+		
+	}
+	
+	//terceiro método público  
+	public String ligarTV() {
+		if (this.tvLigada) {
+			return " A TV " + this.marca + "já estava ligada:" +this.voltagem;
+		}else {
+			this.tvLigada = true; // Estou ligando motor 
+			return "A TV " + this.marca + "foi ligada agora:" +this.voltagem;
+				
+		}
+		
+		
+	}
+	// quarto método público
+	public String desligarTV() {
+		if (!this.tvLigada) {
+			return "A TV " + this.marca + "já estava desligada.";
+		}else {
+			this.tvLigada = false; // Estou ligando a tv 
+			return " A TV" + this.marca + " foi desligada agora.";
+	
+		}
+	
+	}
+	
+	// quinto método público 
+	public String aumentarTV (int valor) {
+		if (this.tvLigada) {
+			this.volume += valor; // this.volume = this.volume + valor;
+			return this.marca + "---> ATENÇÃO! Aumentou! Volume atual:" +this.volume;
+		}
+	return this.marca + "---> ATENÇÃO! Não é possível aumentar o volume  com a TV desligada";
+	}
+	
+	// sexto método público
+	public String reduzirTV (int valor) {
+		if (this.tvLigada) {
+			this.volume -= valor; // this.volume = this.volume + valor;
+			return this.marca + "---> ATENÇÃO! Reduziu! Volume atual:" +this.volume;
+		}
+	return this.marca + "---> ATENÇÃO! Não é possível reduzir o volume com a TV desligada";
+	}
+	
+	// oitavo método público
+	public void mudarCanal () {
+		if (this.tvLigada) {
+		System.out.println (this.marca + "---> ATENÇÃO! Não é possível mudar o canal, pois a  TV desligada");	
+		} else {
+	    if (canal >= 0 && canal <= 99) {
+	    System.out.println (this.marca + "---> O canal atual é:" + this.canal);
+	}
+	}
+	}
+	      
+	
+	// nono método público
+	
+	public void consumoTV () {
+		if (!this.tvLigada) {
+	System.out.println (this.marca + "---> ATENÇÃO! Não é possível verificar o consumo, pois a  TV desligada");	
+			} else {
+				this.consumo = this.voltagem * this.tamanho; 
+					System.out.println (this.marca + "---> O consumo:" + this.consumo);
+			}
+	}
+	
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public boolean isTvLigada() {
+		return tvLigada;
+	}
+
+	public void setTvLigada(boolean tvLigada) {
+		this.tvLigada = tvLigada;
+	}
+
+	public int getTamanho() {
+		return tamanho;
+	}
+
+	public void setTamanho(int tamanho) {
+		this.tamanho = tamanho;
+	}
+
+	public int getVolume() {
+		return volume;
+	}
+
+	public void setVolume(int volume) {
+		this.volume = volume;
+	}
+
+	public int getVoltagem() {
+		return voltagem;
+	}
+
+	public void setVoltagem(int voltagem) {
+		this.voltagem = voltagem;
+	}
+
+	public int getCanal() {
+		return canal;
+	}
+
+	public void setCanal(int canal) {
+		this.canal = canal;
+	}
+}
+
+
